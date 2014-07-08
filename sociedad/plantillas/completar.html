@@ -1,0 +1,35 @@
+{# encoding:utf-8 #}
+{% extends 'base2.html' %}
+{% block title %}Completar Perfil{% endblock%}
+
+Completar Perfil
+{% block formulario %}
+<div class="form_registro">
+    <form id="formulario" enctype="multipart/form-data" method="post" action="">
+        <div id="form_reg">
+        {% csrf_token %}
+        <h1 id="titulo" style="font-size:45px;">Formulario</h1>
+            <table id="tablas">
+            {% for field in formulariousuario %}
+                {{ field.errors }}
+                <tr>
+                    <td align="left">{{ field.label_tag }}</td>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <table id="tablas">
+            {% for field in formularioperfil %}
+                {{ field.errors }}
+                <tr>
+                <td align="left">{{ field.label_tag }}</td>
+                <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+                <input type="submit" value="Guardar" id="control" />
+                <a href='/' class='button'><input type="button" value="Cancelar" id="control"></a>
+        </div>
+    </form>
+</div>
+{% endblock %}

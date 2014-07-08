@@ -1,0 +1,47 @@
+{# encoding:utf-8 #}
+{% extends 'base.html' %}
+{% block title %}Cuenta Privada{% endblock%}
+
+{%block contenedor%}
+	<div id="menu-i">
+		<div id="botones_p1"><img src="/static/img/comentar.png" id="icono"><div style="clear:both"></div><b><a href="/entrada-blog/">Nueva Publicacion</a></b></div>
+		
+		<div id="botones_p3"><img src="/static/img/noticias.png" id="icono"><div style="clear:both"></div><b><a href="/categoria/"> Categorias de Libros</a></b></div>
+		<div id="botones_p2"><img src="/static/img/libro.png" id="icono"><div style="clear:both"></div><b><a href="/new_libro/">Nuevo Libro</a></b></div>
+		<div id="botones_p2"><img src="/static/img/newnoticias.png" id="icono"><div style="clear:both"></div><b><a href="/entrada_noticia/">Nuevo Noticia</a></b></div>
+		<div id="botones_p3"><img src="/static/img/libros.png" id="icono"><div style="clear:both"></div><b><a href="/mislibros/">MIs Libros</a></b></div>
+		<div id="botones_p3"><img src="/static/img/publicaciones.png" id="icono"><div style="clear:both"></div><b><a href="/mispublicaion/"> Mis Publicaciones</a></b></div>
+		<div id="botones_p3"><img src="/static/img/misnoticias.png" id="icono"><div style="clear:both"></div><b><a href="/misnoticias/"> Mis Noticias</a></b></div>
+	</div>
+	{% block contenido %}
+	<br>
+	<br>
+	<br>
+		<div id="cont-i">
+		<h1 id="titulo" style="font-size:45px; text-align:center; margin-bottom: 35px;">Datos Usuario</h1>
+		<div style="text-align:center;">
+			<img src="/archivos/{{dato.foto}}/" class="foto">
+			<div id="perfill">
+				<br>
+				<b>Nombre:</b> {{ user.first_name|upper }}
+				<br>
+				<br>
+				<b>Apellido: </b>	{{ user.last_name|upper }}
+				<br>
+				<br>
+				<b>Rango de Usuario:</b> {{medalla}}
+				<br>
+				<br>
+				<b>Pais: </b>{{dato.pais}}
+				<br>
+				<br>
+				<b>Ciudad: </b>{{dato.ciudad}}
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+	{% endblock %}
+{% endblock %}

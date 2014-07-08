@@ -1,0 +1,126 @@
+{# encoding:utf-8 #}
+<!DOCTYPE html>
+<html>
+<head>
+	<script type='text/javascript' src='/static/js/jquery.js'></script>
+	<script type='text/javascript' src='/static/js/jqueryui.js'></script>
+	<script type='text/javascript' src='/static/js/jquery.simplemodal.js'></script>
+	<script type='text/javascript' src='/static/js/osx.js'></script>
+	<script type='text/javascript'>
+		var x;
+		x=$(document);
+		x.ready(inicio);
+
+		function inicio () {
+			var x=$('#acordeon');
+			x.accordion();
+		}
+	</script>
+	<link rel="stylesheet" type="text/css" href="/static/css/estilo-pc.css">
+	<link type='text/css' href='/static/css/popup/demo.css' rel='stylesheet' media='screen' />
+	<link type='text/css' href='/static/css/ui-lightness/jquery-ui-1.8.16.custom.css' rel='stylesheet' media='screen' />
+	<link type='text/css' href='/static/css/popup/osx.css' rel='stylesheet' media='screen' />
+	<link type='text/css' href='/static/css/contenidos.css' rel='stylesheet' media='screen' />
+	<style type="text/css">
+		.ec-stars-wrapper {
+			font-size: 0;
+			display: inline-block;
+		}
+		.ec-stars-wrapper a {
+			text-decoration: none;
+			display: inline-block;
+			font-size: 32px;
+			font-size: 2rem;
+			color: #888;
+		}
+		.ec-stars-wrapper:hover a {
+			color: rgb(39, 130, 228);
+		}
+		.ec-stars-wrapper > a:hover ~ a {
+			color: #888;
+		}
+	</style>
+	<title>
+		{% block title%}
+			{{ titulo }}
+		{% endblock %}
+	</title>
+</head>
+<body>
+	<header id="cabeza">
+		<div id="logo1"></div>
+		<div id='titulo'><h1>SOCIEDAD CIENTIFICA<small> ING. DE SISTEMAS</small></h1></div>
+		<div id='subtitulo'><h2>LA SABIDURIA ES LOS MAS GRANDE</h2></div>
+		<div style="clear:both;"></div>
+		<nav id='menu1'>
+			<ul id='ul1'>
+				<li id='li1'><a href="/" id='menu1-link'>PORTADA</a></li>
+				<li id='li1'><a href="/noticia/" id='menu1-link'>NOTICIAS</a></li>
+				<li id='li1'><a href="/biblioteca/" id='menu1-link'>BIBLIOTECA</a></li>
+				<li id='li1'><a href="/blog/" id='menu1-link'>BLOG</a></li>
+				<li id='li1'><a href="" id='menu1-link'>CONTACTO</a></li>
+			</ul>
+		</nav>
+		<div style="clear:both;"></div>
+	</header>
+<div id='todo'>
+	<section>
+		<div>
+			{% block formulario %}
+			{% endblock %}
+		</div>
+	</section>
+	<aside id="bloque">
+		<blockquote id="cuadradito">----------- MENU -----------</blockquote>
+		<BR>
+		<nav id='menu2'>
+			<ul id="ul2">
+				<li id='li2'><a href="/" id='menu2-link'>PORTADA</a></li>
+				<li id='li2'><a href="" id='menu2-link'>NOTICIAS</a></li>
+				<li id='li2'><a href="/biblioteca/" id='menu2-link'>BIBLIOTECA</a></li>
+				<li id='li2'><a href="/blog/" id='menu2-link'>BLOG</a></li>
+				<li id='li2'><a href="" id='menu2-link'>CONTACTO</a></li>
+				{% if user.is_authenticated %}
+					<li id='li2'><a href="" id="menu2-link">PERFIL</a></li>
+				{% endif %}
+			</ul>
+		</nav>
+		<BR>
+		<blockquote id="cuadradito">--- PUBLICACION RECIENTE ---</blockquote>
+		<div id="acordeon">
+			<h3><a href="#">Enlace</a></h3>
+			<div><p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
+		</div>
+		{% block libros %}
+		<blockquote id="cuadradito">--- CATEGORIAS ---</blockquote>
+			{% for i in cate %}
+				<hr>
+					<p><a href="{% url 'sociedad.apps.biblioteca.views.ver_lib_cat' i.id %}">{{ i.tipo }}</a></p>
+				<hr>
+			{% endfor %}
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		{% endblock %}
+		<blockquote id="cuadradito">CALENDARIO</blockquote>
+		{% block calendario %}
+			<center>
+				<div id="datepicker"></div>
+ 			</center>
+			<script type="text/javascript">
+			$( "#datepicker" ).datepicker();
+			</script>
+		{% endblock %}
+	</aside>
+
+         <div style="clear:both;"></div>
+</div>
+	<footer>
+		&copy CopyRigth 2014 - Edson David Delgado Ugarte
+	</footer>
+</body>
+</html>
+
+

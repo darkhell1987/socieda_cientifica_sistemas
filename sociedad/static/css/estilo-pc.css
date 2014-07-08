@@ -1,0 +1,396 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	background: rgba(0,0,0,0.2);
+	margin:0px 30px 0px 30px;
+}
+
+#logo1{
+	background: url('/static/img/logo.png') no-repeat;
+	background-size: 100% 100%;
+	width: 150px;
+	height: 200px;
+	border: 0px dashed;
+	float: left;
+	margin: 15px;
+}
+header{
+	background: black;
+}
+#titulo{
+	padding-top: 5%;
+	font-size: 1.5em;
+	font-family: '#44 Font Shadow';
+	color: #07A6D0;
+	text-shadow: 4px 4px 5px rgba(255,255,255,1);
+}
+#subtitulo{
+	font-size: 0.8em;
+	font-family: '$Five Double Zero';
+	color: #05C765;
+}
+#menu1{
+	color: white;
+	margin-left: 20px;
+}
+#menu1 #ul1 #li1{
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 15px;
+	text-decoration: none;
+	list-style: none;
+}
+#menu1-link{
+	text-decoration: none;
+	color: white;
+	padding: 5px;
+	background: ;
+	border-radius: 15px;
+	font-family: 'Ace Crikey';
+	font-size: 20px;
+}
+#menu1-link:hover{
+	text-decoration: underline;
+	text-shadow: 0px 4px 5px rgba(0,125,255,1);
+}
+
+#entrar{
+	float: right;
+	padding: 5px;
+	margin: 10px;
+}
+
+#todo{
+	background: rgba(0,0,0,0.2); 	
+}
+section{
+	height: auto;
+	width: 75%;
+	background: white;
+	float: left;
+
+}
+#bloque{
+	height: auto;
+	width: 25%;
+	background: black;
+	float: right;
+}
+footer{
+	height: 50px;
+	color: white;
+	background: #07A6D0;
+	padding-top: 25px;
+	padding-right: 15px;
+	text-align: right;
+}
+
+#form_reg{
+	margin: 30px;
+	padding: 15px;
+	text-align: center;
+}
+#id_username{
+	height: 30px;
+	width: 250px;
+}
+#id_password1{
+	height: 30px;
+	width: 250px;
+}
+#id_password2{
+	height: 30px;
+	width: 250px;
+}
+
+#cuadradito{
+	padding-top: 12px;
+	background: #0077CC;
+	font-size: 20px;
+	height: 30px;
+	color:black;
+	font-family: 'Anticlimax';
+	text-align: center;
+}
+
+#menu2{
+	text-align:  left;
+	color: white;
+	margin-left: 30px;
+}
+#menu2 #ul2 #li2{
+	padding: 0px;
+	text-decoration: none;
+	list-style: none;
+	font-size: 15px;
+}
+#menu2-link{
+	text-decoration: none;
+	color: white;
+	padding: 5px;
+	background: ;
+	border-radius: 15px;
+	font-family: 'Ace Crikey';
+	font-size: 20px;
+}
+#menu2-link:hover{
+	text-decoration: underline;
+	color: #0077CC;
+}
+
+#art-blog{
+	height: auto;
+	background: #2E353D;
+	color: white;
+	margin-top: 20px;
+	font-family: 'Times New Roman';
+}
+
+#title-blog{
+	margin-top: 20px;
+	text-align: center;
+	font-size: 30px;
+	font-family: '7 days fat rotated';
+	text-shadow:0px 10px 15px black;
+	padding: 10px;
+}
+
+#cont-blog{
+	margin:20px;
+	padding: 20px;
+}
+
+#barrita{
+	height: 22px;
+	width: 5px;
+	margin-right: 5px;
+	background: #0033ff;
+	float: left;
+}
+
+#cont_comt{
+	margin:20px;
+	padding: 10px;
+	border: 2px white dashed;
+}
+
+#enlaces-blog{
+	text-decoration: none;
+	color: black;
+	padding: 5px;
+	background: ;
+	border-radius: 15px;
+	font-family: 'Ace Crikey';
+	font-size: 20px;
+}
+
+#s_img{
+	float: left;
+}
+
+#flecha_izq{
+	background: url('/static/img/flecha_izquierda.gif') no-repeat;
+	background-size: 100% 100%;
+	width: 50px;
+	height: 50px;
+	margin: 15px;
+	float: left;
+}
+#flecha_der{
+	background: url('/static/img/flecha_derecha.gif') no-repeat;
+	background-size: 100% 100%;
+	width: 50px;
+	height: 50px;
+	margin: 15px;
+	float: right;
+}
+#flechas{
+	text-align: center;
+}
+#img_entrada{
+	background-size: 100% 100%;
+	height: 20%;
+	width: 20%;
+	float: left;
+	margin-right: 25px;
+}
+#art_libro{
+	height: auto;
+	width: auto;
+	margin-left: 18px;
+}
+#img_libro{
+	background-size: 100% 100%;
+	height: 200px;
+	width: 130px;
+	border: 2px black solid;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+}
+#libro{
+	margin: 20px;
+	border: 0px rgb(0,123,255) Double;
+	width: 420px;
+	display: block;
+	float: left;
+}
+.libro1{
+	border: 3px #0079ff solid;
+	width: 410px;
+	display: block;
+	float: left;
+	transition:0.5s all;
+}
+.libro1:hover{
+	background: rgba(0,121,255,0.2);
+}
+
+.libro2{
+	border: 3px #ff2b2b solid;
+	width: 410px;
+	display: block;
+	float: left;
+	transition:0.5s all;
+}
+.libro2:hover{
+	background: rgba(255,43,43,0.2);
+}
+
+.libro4{
+	border: 3px #8000ff solid;
+	width: 410px;
+	display: block;
+	float: left;
+	transition:0.5s all;
+}
+.libro4:hover{
+	background: rgba(128,0,255,0.2);
+}
+
+.libro3{
+	border: 3px #00ff93 solid;
+	width: 410px;
+	display: block;
+	float: left;
+	transition:0.5s all;
+}
+.libro3:hover{
+	background: rgba(0,255,147,0.3);
+}
+
+.libro5{
+	border: 3px #76a7d8 solid;
+	width: 410px;
+	display: block;
+	float: left;
+	transition:0.5s all;
+}
+.libro5:hover{
+	background: rgba(118,167,216,0.2);
+}
+
+.libro6{
+	border: 3px #FBC302 solid;
+	width: 410px;
+	display: block;
+	float: left;
+	transition:0.5s all;
+}
+.libro6:hover{
+	background: rgba(251,195,2,0.3);
+}
+
+#icono{
+	background-size: 100% 100%;
+	width: 60px;
+	height: 60px;
+	text-align: center;
+}
+
+#botones_p1{
+	width: 130px;
+	height: 0px auto;
+	background: rgb(0,191,255);
+	position: static;
+    text-align: center;
+    text-transform: uppercase;
+    font-style: italic;
+    transition:0.5s all;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#botones_p2{
+	width: 130px;
+	height: 0px auto;
+	background: rgb(0,191,200);
+	position: static;
+    text-align: center;
+    text-transform: uppercase;
+    font-style: italic;
+    transition:0.5s all;
+    margin-bottom: 10px;
+}
+#botones_p3{
+	width: 130px;
+	height: 0px auto;
+	background: rgb(0,171,255);
+	position: static;
+    text-align: center;
+    text-transform: uppercase;
+    font-style: italic;
+    transition:0.5s all;
+    margin-bottom: 10px;
+}
+#botones_p2,#botones_p3,#botones_p1{
+	background: white;
+}
+#botones_p2:hover,#botones_p3:hover,#botones_p1:hover{
+	color: white;
+	text-align: center;
+	background: black;
+}
+#tablas{
+	padding: 30px;
+	margin-left: 25%;
+	color: #a0b0c0;
+	font-size: 18px;
+	font-family: 'Times New Roman';
+}
+
+#no_reg{
+	border-radius: 15px;
+	box-shadow: 0px 15px 20px rgba(0,0,0,0.7);
+	margin-bottom: 20px;
+}
+
+#perfil_user{
+	position: absolute;
+	top: 0%;
+	left: 85%;
+	width: 200px;
+	height: 200px auto;
+	background: white;
+	box-shadow: 0px 10px 20px rgba(255,255,255,0.7);
+}
+
+#menu-i{
+	float: left;
+	background: rgba(0,0,0,1);
+	height: auto;
+	padding: 5px;
+	border: 1px white solid;
+	box-shadow: 0px 0px 130px rgba(0,0,0,1);
+}
+
+#cont-i{
+	
+	width: 70%;
+	padding: 10px;
+	margin:auto;
+	float: right;
+	margin-right: 5%;
+	border: 0px black dashed;
+	box-shadow: 0px 20px 130px rgba(0,0,0,0.7);
+}

@@ -1,0 +1,33 @@
+{# encoding:utf-8 #}
+{% extends 'base.html' %}
+
+{% block contenedor %}
+	<div style="clear:both;"></div>
+	<h1 id="title-blog">NOTICIAS DEL MOMENTO</h1>
+	{% for i in noticia.object_list %}
+	<article id="art-blog">
+		<div id="cont-blog">
+			<h2><div id="barrita"></div><a id="links" href="{% url 'sociedad.apps.noticias.views.nentrada' i.id %}" >{{ i.titulo | title }}</a></h2>
+			<p><time>{{ i.fecha_entrada }}</time></p>
+			<a href="/archivos/{{ i.imagen }}" target="_blank"><img id="img_entrada" src="/archivos/{{ i.imagen }}" ></a>
+			<p>{{ i.descripcion | safe | truncatewords:"30" }}<a id="links" href="{% url 'sociedad.apps.noticias.views.nentrada' i.id %}">Leer mas...</a> </p>
+			<div style="clear:both;"></div>	
+		</div>
+	</article>
+	<div style="clear:both;"></div>	
+	{% endfor %}
+	<div id="flechas">
+		<h1>Página {{ noticia.number }} de {{ noticia.paginator.num_pages }}</h1>
+		{% if noticia.has_previous %}
+			<a href="?page={{ noticia.previous_page_number }}" title="Página anterior" ><div id="flecha_izq"></div></a>
+		{% endif %}
+		{% if noticia.has_next %}
+			<a href="?page={{ noticia.next_page_number }}" title='Página siguiente'><div id="flecha_der"></div></a>
+		{% endif %}
+	</div>
+{% endblock %}
+{% block historico%}
+<aside>
+	
+</aside>
+{% endblock %}

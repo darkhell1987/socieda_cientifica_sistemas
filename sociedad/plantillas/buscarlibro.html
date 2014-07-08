@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+<script>
+	jQuery(document).ready(function($) {
+		$("#id_buscar").on("keyup",function(e){
+			if(e.which!=8){
+				$.ajax({
+					url: '/buscar/',
+					type: 'POST',
+					data: $("#busqueda").serializeObject()
+				})
+				.done(function(html) {
+					
+					$("#resultados").html(html)
+				})
+				.fail(function() {
+					console.log("error");
+				})
+				.always(function() {
+					console.log("complete");
+				});	
+			}
+		});
+	});
+</script>
+{% block contenedor %}
+<div style="clear:both;"></div>
+	<h1 id="title-blog">BUSCANDO LIBROS</h1>
+	<br>
+<div id="buscar"> 
+	<form action="" method="post" id="busqueda">
+		{%csrf_token%}
+		<label for="id_buscar">Buscar Libros:</label><input id="id_buscar" placeholder="Busqueda de libro" maxlength="200" name="buscar" type="text" required />
+		<input type="submit" value="Buscar" id="btn_buscar">
+	</form>
+</div>
+
+<div id="resultados">
+
+</div>
+
+{% endblock %}

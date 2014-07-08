@@ -1,0 +1,41 @@
+{# encoding:utf-8 #}
+{% extends 'perfil.html' %}
+{% block title %}Cuenta Privada{% endblock%}
+
+{% block contenido %}
+<div id="cont-i">
+<h1 id="titulo" style="font-size:35px">Mis Libros</h1>
+<br>
+{% for i in mislibros %}
+	
+	<table border="0" >
+		<tr >
+			<td  colspan="2">{{i.titulo}}</td>
+		</tr>
+		<tr>
+			<td colspan="2"><small><time>{{i.fecha_subida}}</time></small></td>
+		</tr>
+		<tr >
+			<td><img id="img_libro" src="/archivos/{{ i.portada }}"></td>
+			<td>
+				<p><b>Editorial:</b><small>  {{i.editorial}}</small></p>
+				<hr>
+				<p><b>Autor:</b><small>  {{i.autor}}</small></p>
+				<hr>
+				<p><b>Genero:</b><small>  {{i.genero}}</small></p>
+				<hr>
+				<p><b>Pais:</b><small>  {{i.pais_autor}}</small></p>
+				<hr>
+				<p><b>Numero paginas:</b><small> {{i.num_paginas}}</small></p>
+				<hr>
+				<p><b>Fecha Publicada:</b><small> {{i.publicacion}}</small></p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><p><b>Descripcion:</b> </p>{{i.descripcion|safe|truncatewords:"10"}} <a href="{% url 'sociedad.apps.biblioteca.views.libro' i.id %}" id="titulos_enlace">Leer mas...</a></td>
+		</tr>
+	</table>
+	<hr>
+{% endfor %}
+</div>
+{% endblock %}

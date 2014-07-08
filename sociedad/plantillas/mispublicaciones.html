@@ -1,0 +1,22 @@
+{# encoding:utf-8 #}
+{% extends 'perfil.html' %}
+{% block title %}Cuenta Privada{% endblock%}
+
+{% block contenido %}
+<div id="cont-i">
+<h1 id="titulo" style="font-size:35px">Mis Publicaciones</h1>
+<br>
+{% for i in mispublicaciones %}
+	<article id="art-blog">
+		<div id="cont-blog">
+			<h2><div id="barrita"></div><a href="{% url 'sociedad.apps.blog.views.entrada' i.id %}" >{{ i.titulo | title }}</a></h2>
+			<p><time>{{ i.fecha_entrada }}</time></p>
+			<a href="/archivos/{{ i.imagen }}" target="_blank"><img id="img_entrada" src="/archivos/{{ i.imagen }}" ></a>
+			<p>{{ i.descripcion | safe | truncatewords:"30" }}<a href="{% url 'sociedad.apps.blog.views.entrada' i.id %}">Leer mas...</a> </p>
+		</div>
+	</article>
+	<div style="clear:both;"></div>	
+	<hr>
+{% endfor %}
+</div>
+{% endblock %}

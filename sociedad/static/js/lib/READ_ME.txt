@@ -1,0 +1,1 @@
+Adam, burası static dosyaların, resimdir, css'dir, şudur budur, onların mekanı. Buradaki aletler bu application tarafından kullanılacak. Sonrasında bu applicationı bir yerde kullanacaksak, sadece bu applicationı koparıp atacağız oraya. Templateler, staticler neredeydi demeyeceğiz. Hepsi derli toplu duracak.

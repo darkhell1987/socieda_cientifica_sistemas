@@ -1,0 +1,25 @@
+{# encoding:utf-8 #}
+{% extends 'perfil.html' %}
+{% block title %}Cuenta Privada{% endblock%}
+
+
+{% block contenido %}
+	<div id="cont-i">
+		<h1 id="titulo" style="font-size:45px; text-align:center; margin-bottom: 35px;">Formulario de Nuevo Blog</h1>
+		<form action="" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table>{{ entradas.as_p }}
+			<script type='text/javascript' src='/static/js/ckeditor/ckeditor.js'></script>
+			<script type='text/javascript'>CKEDITOR.replace('id_descripcion',
+				{
+					filebrowserBrowseUrl: '/imagenes/',
+					
+				});
+			</script>
+			
+			</table>
+			<p><pre>        
+                            <input type="submit" value="Enviar" id="control">               <a href="/privado/"><input type="button" value="Cancelar" id="control"></a></pre></p>
+		</form>
+	</div>
+{% endblock %}

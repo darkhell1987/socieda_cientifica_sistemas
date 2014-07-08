@@ -1,0 +1,101 @@
+{# encoding:utf-8 #}
+{% extends 'base.html' %}
+{% block title %}Biblioteca{% endblock%}
+{% block contenedor %}
+
+	<div style="clear:both;"></div>
+	<h1 id="title-blog">BIBLIOTECA</h1>
+	<article id="art-blog">
+		<div id="cont-blog">
+			<p><h2 style="font-size:40px">{{ libro.titulo }}</h2>
+			<div class="ec-stars-wrapper" style="float: right;">
+				<a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+				<a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+				<a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+				<a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+				<a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+			</div>
+
+			<time>{{libro.fecha_subida}}</time></p><br>
+		<table border="0">
+			<tr>
+				<td><img id="img_portada" src="/archivos/{{ libro.portada }}"></td>
+				<td >
+					<p><b>Editorial:</b> {{libro.editorial}}</p>
+					<hr>
+					<p><b>Autor:</b> {{libro.autor}}</p>
+					<hr>
+					<p><b>Genero:</b> {{libro.genero}}</p>
+					<hr>
+					<p><b>Pais:</b> {{libro.pais_autor}}</p>
+					<hr>
+					<p><b>Numero paginas:</b> {{libro.num_paginas}}</p>
+					<hr>
+					<p><b>Fecha Publicada:</b> {{libro.publicacion}}</p>
+					<hr>
+					<p><b>Descripcion:</b>{{libro.descripcion|safe}}</p>
+					<hr>
+					<p><b><a href="/archivos/{{libro.libro}}" download = "{{libro.titulo}}" ><img src="/static/img/descarga.gif" id="descarga"></a></b> </p>
+				</td>
+			</tr>
+		</table>	
+		</div>
+
+	</article>
+	<div style="clear:both;"></div>
+
+	<div id="relacionados">
+		<div id="titulo_rel">Libros relacionados</div>
+		<div id='rel_li'>
+			
+		</div>
+		<div id='rel_li'>
+			estos son los libros
+		</div>
+		<div id='rel_li'>
+			estos son los libros
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+	<p id="t_c">Comentarios:</p>
+	{% for lista in comentaro %}
+	<article id="art-blog">
+		<div id='cont_comt'>
+		<h3>{{ lista.autor }} - <time><small>{{ lista.fechacreado }}</small></time></h3>
+		{{ lista.mensaje|safe }}
+		</div>
+	</article>
+	<hr>
+	{% endfor %}
+	{% if user.is_authenticated %}
+
+	<div id="comentario_s">
+		<form action="{% url 'sociedad.apps.biblioteca.views.comentar' libro.pk %}" method="POST">
+			{% csrf_token %}
+			<p>Nombre Logeado:<b> {{ user.first_name|upper }} {{ user.last_name|upper }}</b>
+			<input id="id_autor" maxlength="100" name="autor" type="hidden" value="{{ user.first_name|upper }} {{ user.last_name|upper }}"></p>
+			<script type='text/javascript' src='/static/js/nicEdit.js'></script>
+				<script type="text/javascript">
+					  bkLib.onDomLoaded(function() {
+					        new nicEditor({iconsPath : '/static/js/nicEditorIcons.gif'}).panelInstance('id_mensaje');
+					  });
+			  	</script>
+			<p>Comentario:</p>
+			<p><textarea cols="100%" id="id_mensaje" name="mensaje" rows="10"></textarea></p>
+
+			<input type="submit" value="Comentar" id="control"></p>
+		</form>
+
+		{% else %}
+
+		<form action="{% url 'sociedad.apps.biblioteca.views.comentar' libro.pk %}" method="POST">
+			{% csrf_token %}
+			<p>Nombre: {{ form.autor }} </p>
+			<p><textarea cols="40" id="id_mensaje" name="mensaje" rows="10"></textarea></p>
+			<input type="submit" value="Enviar"></p>
+		</form>
+	</div>
+
+	{% endif %}
+
+{% endblock %}

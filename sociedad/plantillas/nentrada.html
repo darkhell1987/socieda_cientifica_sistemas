@@ -1,0 +1,69 @@
+{# encoding:utf-8 #}
+{% extends 'base.html' %}
+{% block title %}Cuenta Privada{% endblock%}
+{% block contenedor %}
+
+	<div style="clear:both;"></div>
+	<h1 id="title-blog">BLOG - ING. SISTEMAS</h1>
+	<article id="art-blog">
+		<div id="cont-blog">
+		<h2><div id="barrita"></div><h2 style="font-size:24px">{{ entrada.titulo }}</h2></h2>
+			<br>
+			<time>{{ entrada.fecha_entrada }}</time>
+			<br>
+			<a href="/archivos/{{ entrada.imagen }}" target="_blank"><img src="/archivos/{{ entrada.imagen }}" id="foto_n"></a>
+			<p id="desc_not">{{ entrada.descripcion | safe}}</p>
+		</div>
+	</article>
+	<hr>
+	<div style="clear:both;"></div>
+	<p id="t_c">Comentarios:</p>
+	<hr>
+	
+	{% for comentario in comentario %}
+	<article id="art-blog">
+		<div id='cont_comt'>
+		<h3>{{ comentario.autor }} - <time><small>{{ comentario.fechacreado }}</small></time></h3>
+		{{ comentario.mensaje|safe }}
+		</div>
+	</article>
+	<hr>
+	{% endfor %}
+	<div id="comentario">
+	{% if user.is_authenticated %}
+
+	<div id="comentario_s">
+		<form action="{% url 'sociedad.apps.noticias.views.poncomentarionoticia' entrada.pk %}" method="POST">
+			{% csrf_token %}
+			<p>Nombre Logeado:<b> {{ user.first_name|upper }} {{ user.last_name|upper }}</b><input id="id_autor" maxlength="100" name="autor" type="hidden" value="{{ user.first_name|upper }} {{ user.last_name|upper }}"></p>
+			<script type='text/javascript' src='/static/js/nicEdit.js'></script>
+				<script type="text/javascript">
+					  bkLib.onDomLoaded(function() {
+					        new nicEditor({iconsPath : '/static/js/nicEditorIcons.gif'}).panelInstance('id_mensaje');
+					  });
+			  	</script>
+			<p>Comentario:</p>
+			<p><textarea cols="100%" id="id_mensaje" name="mensaje" rows="10"></textarea></p>
+
+			<input type="submit" value="Comentar" id="control"></p>
+		</form>
+
+		{% else %}
+
+		<form action="{% url 'sociedad.apps.noticias.views.poncomentarionoticia' entrada.pk %}" method="POST">
+			{% csrf_token %}
+			<br>
+			<b>Para Comentar porfavor <input type="button" value="INGRESAR" id="control2" class='osx demo' />  al sistema</b>
+			<br>
+			<p>Nombre:<br> {{ form.autor }} </p>
+			<p>Comentario: <br>
+			<textarea cols="40" id="id_mensaje" name="mensaje" rows="10"></textarea></p>
+			<input type="submit" value="Enviar" id="control"></p>
+		</form>
+	</div>
+	<br>
+	<br>
+	<br>
+	{% endif %}
+	</div>
+{% endblock %}

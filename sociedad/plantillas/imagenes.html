@@ -1,0 +1,13 @@
+{% block imagenes %}
+	<style type="text/css">
+	img{
+		background-size: 100% 100%;
+		width: 50%;
+		height: 50%;
+	}
+	</style>
+	{% for i in img %}
+		<a href="#"><img src="/archivos/{{i.imagen}}"></a>
+	{% endfor %}
+
+{% endblock %}

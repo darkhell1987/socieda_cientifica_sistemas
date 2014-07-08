@@ -1,0 +1,123 @@
+{# encoding:utf-8 #}
+{% extends 'base.html' %}
+
+{% block title %}Cuenta Privada{% endblock%}
+{% block contenedor %}
+<<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="https://sapui5.netweaver.ondemand.com/sdk/resources/sap/ui/commons/themes/sap_goldreflection/img/rating/star_selected.png">
+	
+	<!-- Latest compiled and minified CSS 
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">-->
+
+	<!-- Optional theme 
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">-->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/modules/exporting.js"></script>
+	<script src="/static/js/lib/jquery.raty.js"></script>
+</head>
+<body>
+
+
+	<div style="clear:both;"></div>
+	<h1 id="title-blog">BLOG - ING. SISTEMAS</h1>
+	<article id="art-blog">
+		<div id="cont-blog">
+			<h2>
+				<div id="barrita"></div><h2>{{ entrada.titulo }}</h2>
+				<!--estrellas-->
+					<script type="text/javascript">
+						$(document).ready(function() {
+							$('#star_aksam').raty();
+							$('#star_aksam').raty({
+								click: function(score) {
+									$("#star_aksam").raty({
+										'readOnly': true
+									});
+								    $.ajax({
+								        url: "http://127.0.0.1:7474/search/?q=" + score,
+								        type: "GET",
+								        error: function(error) {
+								            console.log(error);
+								        },
+								        success: function(data) {
+								            console.log(data);
+								            alert("Server response" + data);
+
+								            setTimeout(function() {
+								            }, 3000);
+								        }
+								    });
+								}
+							});
+							$('#star_aksam').raty('score', 4);
+						});
+					</script>
+					<style type="text/css">
+						.table {
+						    height: 100px;
+						    width:400px; 
+						}
+						#rating_table {
+							margin-top: 40px; 
+						}
+						#title_text {
+							margin-top: 10px;
+						}
+				  	</style>
+				  	<div id="star_aksam">
+				  	</div>
+				<!--finestrellas-->
+			</h2>
+			<h3>fecha Publicada:<time>  {{ entrada.fecha_entrada }}</time></h3>
+			<br>
+			<p id="com_blog" >{{ entrada.descripcion | safe}}</p>
+		</div>
+	</article>
+	<div style="clear:both;"></div>
+	<p>Comentarios:</p>
+	<hr>
+	{% for comentario in comentario %}
+	<article id="art-blog">
+		<div id='cont_comt'>
+		<h3 >{{ comentario.autor }} - <time><small>{{ comentario.fechacreado }}</small></time></h3>
+		{{ comentario.mensaje|safe }}
+		</div>
+	</article>
+	<hr>
+	{% endfor %}
+	{% if user.is_authenticated %}
+
+	<div id="comentario_s">
+		<form action="{% url 'sociedad.apps.blog.views.poncomentario' entrada.pk %}" method="POST">
+			{% csrf_token %}
+			<p>Nombre Logeado:<b> {{ user.first_name|upper }} {{ user.last_name|upper }}</b><input id="id_autor" maxlength="100" name="autor" type="hidden" value="{{ user.first_name|upper }} {{ user.last_name|upper }}"></p>
+			<script type='text/javascript' src='/static/js/nicEdit.js'></script>
+				<script type="text/javascript">
+					  bkLib.onDomLoaded(function() {
+					        new nicEditor({iconsPath : '/static/js/nicEditorIcons.gif'}).panelInstance('id_mensaje');
+					  });
+			  	</script>
+			<p>Comentario:</p>
+			<p><textarea cols="100%" id="id_mensaje" name="mensaje" rows="10"></textarea></p>
+
+			<input type="submit" value="Comentar" id="control"></p>
+		</form>
+
+		{% else %}
+
+		<form action="{% url 'sociedad.apps.blog.views.poncomentario' entrada.pk %}" method="POST">
+			{% csrf_token %}
+			<p>Nombre: {{ form.autor }} </p>
+			<p><textarea cols="40" id="id_mensaje" name="mensaje" rows="10"></textarea></p>
+			<input type="submit" value="Enviar" id="control"></p>
+		</form>
+	</div>
+	<br>
+	<br>
+	{% endif %}
+</body>
+</html>
+{% endblock %}

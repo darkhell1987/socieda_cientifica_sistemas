@@ -1,0 +1,248 @@
+{# encoding:utf-8 #}
+<!DOCTYPE html>
+<html>
+<head>
+	<script type='text/javascript' src='/static/js/jquery.js'></script>
+	<script type='text/javascript' src='/static/js/jqueryui.js'></script>
+	<script type='text/javascript' src='/static/js/jquery.simplemodal.js'></script>
+	<script type='text/javascript' src='/static/js/osx.js'></script>
+	<script type='text/javascript'>
+		var x;
+		x=$(document);
+		x.ready(inicio);
+
+		function inicio () {
+			var x=$('#acordeon');
+			x.accordion();
+		}
+	</script>
+	<link rel="stylesheet" type="text/css" href="/static/css/estilo-pc.css">
+	<link type='text/css' href='/static/css/popup/demo.css' rel='stylesheet' media='screen' />
+	<link type='text/css' href='/static/css/ui-lightness/jquery-ui-1.8.16.custom.css' rel='stylesheet' media='screen' />
+	<link type='text/css' href='/static/css/popup/osx.css' rel='stylesheet' media='screen' />
+	<link type='text/css' href='/static/css/contenidos.css' rel='stylesheet' media='screen' />
+	<style type="text/css">
+		.ec-stars-wrapper {
+			font-size: 0;
+			display: inline-block;
+		}
+		.ec-stars-wrapper a {
+			text-decoration: none;
+			display: inline-block;
+			font-size: 32px;
+			font-size: 2rem;
+			color: #888;
+		}
+		.ec-stars-wrapper:hover a {
+			color: rgb(39, 130, 228);
+		}
+		.ec-stars-wrapper > a:hover ~ a {
+			color: #888;
+		}
+	</style>
+	<title>
+		{% block title%}
+			
+		{% endblock %}
+	</title>
+</head>
+<body>
+	<header id="cabeza">
+		<div id="logo1"></div>
+		<div id='titulo'><h1>SOCIEDAD CIENTIFICA<small> ING. DE SISTEMAS</small></h1></div>
+		<div id='subtitulo'><h2>LA SABIDURIA ES LOS MAS GRANDE</h2></div>
+		<div style="clear:both;"></div>
+		<nav id='menu1'>
+			<ul id='ul1'>
+				<li id='li1'><a href="/" id='menu1-link'>PORTADA</a></li>
+				<li id='li1'><a href="/noticia/" id='menu1-link'>NOTICIAS</a></li>
+				<li id='li1'><a href="/biblioteca/" id='menu1-link'>BIBLIOTECA</a></li>
+				<li id='li1'><a href="/blog/" id='menu1-link'>BLOG</a></li>
+				<li id='li1'><a href="/buscar/" id='menu1-link'>BUSCAR</a></li>
+				<li id='li1'><a href="" id='menu1-link'>CONTACTO</a></li>
+				{% if user.is_authenticated %}
+					<li id='li1'><a href="/perfil/" id="menu1-link">PERFIL</a></li>
+				{% endif %}
+			</ul>
+		</nav>
+		{% if user.is_authenticated %}
+        		<div id="perfil_user">
+        			<div id="cab_perfil">Bienvenid@</div>
+	        		<div id="perfil">
+	        		<center><p><img src="/archivos/{{dato.foto}}/" id="foto_perfil"></p></center>
+		        		<h5>
+		        			<p>Nombre: {{ user.first_name|upper }} {{ user.last_name|upper }}</p>
+		        			<p>Pais: {{dato.pais}}</p>
+		        			<p>Ciudad: {{dato.ciudad}}</p>
+		        		</h5>
+		        	</div>
+	        	</div>
+	        	<a href="/cerrar/"><input type="button" value='CERRAR SESION' id="entrar"></a>
+        {% else %}
+            <input type="button" value="INGRESAR" id="entrar" class='osx demo' />
+            {%block sesion%}
+            <div id="mostrar">
+	            <div id="osx-modal-content">
+					<div id="osx-modal-title">INICIAR SESION</div>
+					<div class="close"><a href="" class="simplemodal-close">X</a></div>
+					<div id="osx-modal-data">
+
+						{% if form.errors %}
+							<p class="error">Perdon, su usuario o contraseña son invalidas</p>
+						{% endif %}
+
+						<form action='/' method='post'>
+						{% csrf_token %}
+
+							<label for="username">User name:</label>
+							<input type="text" name="username" value="" id="username" placeholder='Usuario'>
+							<label for="password">Password:</label>
+							<input type="password" name="password" value="" id="password" placeholder='Contraseña'>
+							<br>
+							<input type="submit" value="INICIAR" id="botonn" />
+							<input type="hidden" name="next" value="{{ next|escape }}" />
+						<form action='.' method='post'>				
+						<p><button class="simplemodal-close" >CANCELAR</button> <span>(o press Aqui para <a href="/registro/">Registrarse...</a>)</span></p>
+					</div>
+				</div>				
+			</div>
+			{%endblock%}
+         {% endif %}
+         <div style="clear:both;"></div>
+	</header>
+<div id='todo'>
+	<section>
+		<div>
+			{% block contenedor%}
+				<div id="principal">
+	<hgroup >
+		<h1 id="historia" >Historia</h1>
+		<h2 id="nombre">
+		<b>	Publicado: </b>Edson David Delgado Ugarte (<time datetime= " 2008-02 -14 ">12/12/12</time>)</h2>
+	</hgroup>
+	<table>
+		<tr>
+			<td><img src="/static/img/logo.png"></td>
+			<td>
+				<p id="texto">	
+				La SOCIEDAD CIENTIFICA "DENNIS RITCHIE" DE LA CARRERA DE INGENIERIA DE SISTEMAS DE LA <a href="http://www.uatf.edu.bo" target="_blank">U.A.T.F.</a>, fue creada en el año 2013 por un pequeño y selecto grupo de estudiantes, entre los cuales se encuentran Edson David Delgado Ugarte, Said Garnica, Luis Roberto Escalier y otros.
+
+				Con el fin de formar una Institución que reúna y representa a los estudiantes de la carrera y convirtiéndose en el eje ejecutor y propiciado, se envió al Estudiante Edson Delgado, con el fin de realizar conversaciones con los distintos representantes de la DiCyT, hasta llegar a constituir la Sociedad Científica "Dennis Ritchie".
+				<br>
+				<br>
+				<b>OBJETIVOS</b>
+				<br>
+				<br>
+
+				    Desde su creación de la SCDeR ha trabajado en la búsqueda del cumplimiento cabal de sus objetivos. La defensa del Ejercicio Legal de la futura Profesión, difusión y desarrollo de la Ciencia y Tecnología propiciando cursos de especialización técnica de los ingenieros en diferentes áreas de actualización, mesas redondas y paneles sobre temas relacionados a la profesión, así como también sobre temas técnicos, socio-económicos u otros que sean fundamentales para el crecimiento y desarrollo armónico de nuestra carrera.
+
+				    Ha participado y participa activamente en la solución de los problemas regionales dando su aporte técnico a todas las instituciones donde tiene representación permanente.
+				</p>
+			</td>
+		</tr>
+	</table>
+</div>
+<section id="novedades">
+	<article id="nov_nov">
+		<p class="ult_entrada">NOVEDADES</p>
+	</article>
+	<div id="barra">
+		{% block novedades %}
+		<br>
+		<script type="text/javascript">
+			 $(window).ready(function(){
+			 	$('#area').tinyscrollbar();
+			 
+			 });
+		</script>
+		<div id="area">
+			{% for i in entrada_b.object_list %}
+				<h4>{{ i.titulo }}</h4>
+				<p id="desc_b">{{i.descripcion|safe|truncatewords:"5" }}<a href="{% url 'sociedad.apps.biblioteca.views.ver_lib_cat' i.id %}" >Leer mas</a> </p>
+				<hr>
+			{% endfor %}
+		</div>
+		<br>
+		{% endblock %}
+	</div>
+</section>
+<section id="novedades">
+	<article id="nov_nov">
+		<p class="ult_entrada">ACTIVIDADES RECIENTES</p>
+	</article>
+</section>
+<section id="novedades">
+	<article id="nov_nov">
+		<p class="ult_entrada">ULTIMAS NOTICIAS</p>
+	</article>
+</section>
+<div style="clear:both;"></div>
+<br>
+<br>
+<br>
+			{% endblock %}
+			{% block formulario %}
+			{% endblock %}
+		</div>
+	</section>
+	<aside id="bloque">
+		<blockquote id="cuadradito"> MENU </blockquote>
+		<BR>
+		<nav id='menu2'>
+			<ul id="ul2">
+				<li id='li2'><a href="/" id='menu2-link'>PORTADA</a></li>
+				<li id='li2'><a href="/noticia/" id='menu2-link'>NOTICIAS</a></li>
+				<li id='li2'><a href="/biblioteca/" id='menu2-link'>BIBLIOTECA</a></li>
+				<li id='li2'><a href="/blog/" id='menu2-link'>BLOG</a></li>
+				<li id='li2'><a href="/buscar/" id='menu2-link'>BUSCAR</a></li>
+				<li id='li2'><a href="" id='menu2-link'>CONTACTO</a></li>
+				{% if user.is_authenticated %}
+					<li id='li2'><a href="/perfil/" id="menu2-link">PERFIL</a></li>
+				{% endif %}
+			</ul>
+		</nav>
+		<BR>
+		<blockquote id="cuadradito">PUBLICACION RECIENTE</blockquote>
+		
+		{% block blog %}
+			<div id="acordeon">
+				{% for i in entrada_b.object_list %}
+					<h3><a href="#">{{ i.titulo }}</a></h3>
+					<div><p>{{ i.descripcion | safe | truncatewords:"30" }} <a href="{% url 'sociedad.apps.blog.views.entrada' i.id %}" style="color:blue;">Leer mas...</a></p></div>
+				{% endfor %}			
+			</div>
+		{% endblock %}
+		{% block libros %}
+		<blockquote id="cuadradito">CATEGORIAS</blockquote>
+		<nav id="menu2">
+			<ul id="ul2">
+			{% for i in cate %}
+			<li id="li2"><a href="{% url 'sociedad.apps.biblioteca.views.ver_lib_cat' i.id %}" id="menu2-link" style="font-size:15px">{{ i.tipo }}</a></li>
+			{% endfor %}
+			</ul>
+		</nav>
+		<br>
+		<br>
+		<br>
+		<br>
+		{% endblock %}
+		<blockquote id="cuadradito">CALENDARIO</blockquote>
+		{% block calendario %}
+			<center>
+				<div id="datepicker"></div>
+ 			</center>
+			<script type="text/javascript">
+			$( "#datepicker" ).datepicker();
+			</script>
+		{% endblock %}
+	</aside>
+
+         <div style="clear:both;"></div>
+</div>
+	<footer>
+		&copy CopyRigth 2014 - Edson David Delgado Ugarte
+	</footer>
+</body>
+</html>
+
+

@@ -1,0 +1,58 @@
+{# encoding:utf-8 #}
+{% extends 'perfil.html' %}
+{% block title %}Nuevo Libro{% endblock%}
+
+{% block contenido %}
+	<div id="cont-i">
+		<h1 id="titulo" style="font-size:45px; text-align:center; margin-bottom: 35px;">Registrar Nuevo Libro</h1>
+		<div style="text-align:center;">
+				<script type='text/javascript' src='/static/js/nicEdit.js'></script>
+				<script type="text/javascript">
+					 bkLib.onDomLoaded(function() {
+					        new nicEditor({iconsPath : '/static/js/nicEditorIcons.gif'}).panelInstance('id_descripcion');
+					  });
+			  	</script>
+			  	<script type="text/javascript">
+					$(document).ready(function(){ 
+						$('#id_publicacion').datepicker(); 
+					});
+				</script>
+		<form action="" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<!--nuevo libro-->
+				<table><tr><th><label for="id_titulo">Titulo:</label></th><td><input id="id_titulo" maxlength="100" name="titulo" type="text" /></td></tr>
+					<tr>
+						<th><label for="id_editorial">Editorial:</label></th>
+						<td><input id="id_editorial" maxlength="100" name="editorial" type="text" /></td>
+					</tr>
+					<tr>
+						<th><label for="id_autor">Autor:</label></th>
+						<td><input id="id_autor" maxlength="100" name="autor" type="text" /></td>
+					</tr>
+					<tr>
+						<th><label for="id_genero">Genero:</label></th>
+						<td><input id="id_genero" maxlength="100" name="genero" type="text" /></td>
+					</tr>
+					<tr><th><label for="id_pais_autor">Pais autor:</label></th><td><input id="id_pais_autor" maxlength="100" name="pais_autor" type="text" /></td></tr>
+					<tr><th><label for="id_num_paginas">Num paginas:</label></th><td><input id="id_num_paginas" name="num_paginas" type="number" /></td></tr>
+					<tr><th><label for="id_publicacion">Publicacion:</label></th><td><input id="id_publicacion" name="publicacion" type="text" /></td></tr>
+					<tr><th><label for="id_portada">Portada:</label></th><td><input id="id_portada" name="portada" type="file" /></td></tr>
+					<tr><th><label for="id_libro">Libro:</label></th><td><input id="id_libro" name="libro" type="file" /></td></tr>
+					<tr><th><label for="id_descripcion">Descripcion:</label></th><td><textarea cols="40" id="id_descripcion" name="descripcion" rows="10">
+					</textarea></td></tr>
+					<tr><th><label for="id_requerir">Requerir:</label></th><td><select multiple="multiple" id="id_requerir" name="requerir">
+					<option value="4">Base de Datos</option>
+					<option value="5">Estructura de Datos</option>
+					<option value="6">Python</option>
+					<option value="7">Django</option>
+					</select><br /><span class="helptext"> Mantenga presionado "Control", o "Command" en un Mac, para seleccionar más de una opción.</span></td></tr>
+
+					</th><td><select id="id_user1" name="user1" >
+					<option value="{{user.id}}">{{user.first_name}}</option>
+					</select></td></tr></table>
+			<!--fin libro-->			
+			<p><input type="submit" value="Enviar" id="control"></p>
+		</form>
+		</div>
+	</div>
+{% endblock %}

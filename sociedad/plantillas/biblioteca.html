@@ -1,0 +1,62 @@
+{# encoding:utf-8 #}
+{% extends 'base.html' %}
+
+{% block contenedor%}
+	
+	<div style="clear:both;"></div>
+	<h1 id="title-blog">BIBLIOTECA</h1>
+	<br>
+	<article id='art_libro'>
+	{% for i in libro.object_list %}
+		<div id="libro">
+		<hr>
+		<h2>
+			<a href="{% url 'sociedad.apps.biblioteca.views.libro' i.id %}" id="titulos_enlace">{{ i.titulo }}</a>
+			<div class="ec-stars-wrapper" style="float: right;">
+				<a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+				<a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+				<a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+				<a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+				<a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+			</div>
+		</h2>
+		<time>{{i.fecha_subida}}</time>
+		<table border="0" >
+			<tr class="{% cycle 'libro1' 'libro2' 'libro3' 'libro4' 'libro5' 'libro6' %}">
+				<td><img id="img_libro" src="/archivos/{{ i.portada }}"></td>
+				<td>
+					<p><b>Editorial:</b><small>  {{i.editorial}}</small></p>
+					<hr>
+					<p><b>Autor:</b><small>  {{i.autor}}</small></p>
+					<hr>
+					<p><b>Genero:</b><small>  {{i.genero}}</small></p>
+					<hr>
+					<p><b>Pais:</b><small>  {{i.pais_autor}}</small></p>
+					<hr>
+					<p><b>Numero paginas:</b><small> {{i.num_paginas}}</small></p>
+					<hr>
+					<p><b>Fecha Publicada:</b><small> {{i.publicacion}}</small></p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><p><b>Descripcion:</b> </p>{{i.descripcion|safe|truncatewords:"10"}} <a href="{% url 'sociedad.apps.biblioteca.views.libro' i.id %}" id="titulos_enlace">Leer mas...</a></td>
+			</tr>
+		</table>			
+		<hr>
+		</div>
+	{% endfor %}
+	<div style="clear: both;"></div>
+	</article>
+	<div id="flechas">
+		<h1>Página {{ libro.number }} de {{ libro.paginator.num_pages }}</h1>
+		{% if libro.has_previous %}
+			<a href="?page={{ libro.previous_page_number }}" title="Página anterior" ><div id="flecha_izq"></div></a>
+		{% endif %}
+		{% if libro.has_next %}
+			<a href="?page={{ libro.next_page_number }}" title='Página siguiente'><div id="flecha_der"></div></a>
+		{% endif %}
+	</div>
+	<br>
+	<br>
+	<br>
+{% endblock %}

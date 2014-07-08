@@ -1,0 +1,22 @@
+{# encoding:utf-8 #}
+{% extends 'perfil.html' %}
+{% block title %}Categoria{% endblock%}
+
+{% block contenido %}
+	<div id="cont-i">
+		Nueva Categoria
+		<form action="" method="post">
+			{% csrf_token %}
+			{{ categoria.as_p }}
+			<input type="submit" value="Guardar">
+		</form>
+	
+		<center><h1><div id="titulo">LISTA DE CATEGORIAS</div></h1></center>
+	{% for i in categorias %}
+	<hr>
+		<p>{{ i.tipo }} <a href="{% url 'sociedad.apps.biblioteca.views.ver_lib_cat' i.id %}">Ver</a></p>
+		<hr>
+	{% endfor %}
+	</div>
+
+{% endblock %}
